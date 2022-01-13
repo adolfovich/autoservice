@@ -124,7 +124,7 @@
                   <th scope="row" class="text-center">
                     #<?=$order['id']?><br>
                     <?=date("d.m.y", strtotime($order['order_date']))?><br>
-                    <a href="/cab/orderEdit?id=<?=$order['id']?>" class="btn btn-secondary btn-sm"><i class="far fa-file"></i></a>
+                    <a href="/cab/orderedit?id=<?=$order['id']?>" class="btn btn-secondary btn-sm"><i class="far fa-file"></i></a>
                   </th>
                   <td>
                     <div style="overflow: hidden; white-space: normal;">
