@@ -108,7 +108,7 @@ class Core
 
     function _filterUrl($url)
   	{
-        $url = strtolower($url);
+        //$url = strtolower($url);
   	    $url = str_replace('"', '',  $url);
   	    $url = str_replace("'", '',  $url);
         $url = htmlspecialchars($url);
