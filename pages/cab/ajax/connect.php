@@ -1,16 +1,14 @@
 <?php
 session_start();
-
+/*
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-
+*/
 // Support Database
 include ('../../../_conf.php');
 include ('../../../classes/safemysql.class.php');
 $db = new SafeMySQL(array('host' => $db_host,'user' => $db_user, 'pass' => $db_pass, 'db' => $db_name, 'charset' => 'utf8'));
-
-//var_dump($db->getRow("SELECT * FROM `settings`"));
 
 require_once('../../../classes/core.class.php');
 

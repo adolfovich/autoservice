@@ -1,26 +1,26 @@
 <?php
 
-//$statistics = $db->getAll("SELECT * FROM `statistics` WHERE `enabled` = 1");
-//$salons = $db->getAll("SELECT * FROM `salons` WHERE `enabled` = 1");
+if (isset($_GET['dateFrom'])) {
+	$date_from = $_GET['dateFrom'];
+} else {
+	$date_from = date('Y-m-'.'01');
+}
 
-if (isset($_POST['action']) && $_POST['action'] == 'addOrder') {
-	$insert = [
-		'order_date' => $_POST['orderDate'],
-		'client_phone' => $_POST['orderClientPhone'],
-		'client_name' => $_POST['orderClientName'],
-		'car_brand' => $_POST['orderCarBrand'],
-		'car_model' => $_POST['orderCarModel'],
-		'car_year' => $_POST['orderCarYear'],
-		'works' => $_POST['orderWorks'],
-		'amount' => $_POST['orderAmount'],
-		'recomendations' => $_POST['orderRecomendations']
-	];
-	
-	$db->query("INSERT INTO `orders` SET ?u", $insert);
+if (isset($_GET['dateTo'])) {
+	$date_to = $_GET['dateTo'];
+} else {
+	$date_to = date('Y-m-t');
+}
+
+if (isset($_GET['searchStr']) && $_GET['searchStr'] != '') {
+	$searchStr = "(client_phone LIKE '%".$_GET['searchStr']."%' OR client_name LIKE '%".$_GET['searchStr']."%' OR car_brand LIKE '%".$_GET['searchStr']."%' OR car_model LIKE '%".$_GET['searchStr']."%' OR works LIKE '%".$_GET['searchStr']."%' OR defect LIKE '%".$_GET['searchStr']."%') AND ";
+} else {
+	$searchStr = '';
 }
 
 
-$orders = $db->getAll("SELECT * FROM `orders` ORDER BY order_date DESC");
+
+$orders = $db->getAll("SELECT * FROM `orders` WHERE ".$searchStr." order_date BETWEEN ?s AND ?s ORDER BY order_date DESC", $date_from, $date_to);
 
 $sum = 0;
 
